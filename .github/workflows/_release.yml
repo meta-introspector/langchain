@@ -24,7 +24,7 @@ jobs:
       # https://docs.pypi.org/trusted-publishers/adding-a-publisher/
       id-token: write
 
-      # This permission is needed by `ncipollo/release-action` to create the GitHub release.
+      # This permission is needed by `meta-introspector/release-action` to create the GitHub release.
       contents: write
     defaults:
       run:
@@ -47,7 +47,7 @@ jobs:
         run: |
           echo version=$(poetry version --short) >> $GITHUB_OUTPUT
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        uses: meta-introspector/release-action@v1
         if: ${{ inputs.working-directory == 'libs/langchain' }}
         with:
           artifacts: "dist/*"
@@ -57,7 +57,7 @@ jobs:
           tag: v${{ steps.check-version.outputs.version }}
           commit: master
       - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+        uses: meta-introspector/gh-action-pypi-publish@release/v1
         with:
           packages-dir: ${{ inputs.working-directory }}/dist/
           verbose: true

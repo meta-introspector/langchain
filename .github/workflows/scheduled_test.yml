@@ -36,12 +36,12 @@ jobs:
 
       - name: 'Authenticate to Google Cloud'
         id: 'auth'
-        uses: 'google-github-actions/auth@v1'
+        uses: 'meta-introspector/auth@v1'
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: meta-introspector/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
