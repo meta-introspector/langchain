@@ -134,6 +134,7 @@ class _OllamaCommon(BaseLanguageModel):
             headers={"Content-Type": "application/json"},
             json={"prompt": prompt, **params},
             stream=True,
+            timeout=10
         )
         response.encoding = "utf-8"
         if response.status_code != 200:
@@ -149,7 +150,7 @@ class _OllamaCommon(BaseLanguageModel):
         prompt: str,
         stop: Optional[List[str]] = None,
         run_manager: Optional[CallbackManagerForLLMRun] = None,
-        verbose: bool = False,
+        verbose: bool = True,
         **kwargs: Any,
     ) -> GenerationChunk:
         final_chunk: Optional[GenerationChunk] = None
